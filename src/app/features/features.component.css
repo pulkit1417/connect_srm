@@ -1,0 +1,97 @@
+/* Existing styles */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  @keyframes iconBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  /* Staggered delay for feature cards */
+  .feature-card:nth-child(1) { animation-delay: 0.4s; }
+  .feature-card:nth-child(2) { animation-delay: 0.6s; }
+  .feature-card:nth-child(3) { animation-delay: 0.8s; }
+  .feature-card:nth-child(4) { animation-delay: 1s; }
+  
+  /* Smooth transition styles */
+  .feature-card,
+  .feature-card h4,
+  .feature-card p,
+  .feature-card .bg-white,
+  .feature-card i {
+    transition: all 0.5s ease;
+  }
+  
+  /* Default styles */
+  .feature-card {
+    background-color: #f3f4f6; /* gray-100 */
+  }
+  
+  .feature-card h4 {
+    color: #111827; /* gray-900 */
+  }
+  
+  .feature-card p {
+    color: #6b7280; /* gray-500 */
+  }
+  
+  .feature-card .bg-white {
+    background-color: #ffffff;
+  }
+  
+  .feature-card i {
+    color: #4F46E5; /* primary color */
+  }
+  
+  /* Hover styles */
+  .feature-card:hover {
+    background-color: #4F46E5; /* primary color */
+  }
+  
+  .feature-card:hover h4,
+  .feature-card:hover p {
+    color: #ffffff;
+  }
+  
+  .feature-card:hover .bg-white {
+    background-color: #ffffff; /* Keep the icon background white */
+  }
+  
+  .feature-card:hover i {
+    color: #4F46E5; /* Keep the icon color as primary */
+  }

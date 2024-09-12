@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';  
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -8,9 +8,9 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  styleUrls: ['./contact.component.css']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   contactForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -21,11 +21,16 @@ export class ContactComponent {
     });
   }
 
+  ngOnInit(): void {
+    // Add any initialization logic here
+  }
+
   onSubmit(): void {
     if (this.contactForm.valid) {
       console.log('Form submitted:', this.contactForm.value);
       // Here, you can send the form data to your backend
       this.contactForm.reset();
+      // You could also show a success message to the user here
     }
   }
 }

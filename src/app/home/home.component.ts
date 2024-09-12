@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   subscribeForm: FormGroup;
   showPopup: boolean = false;
 
@@ -20,19 +20,22 @@ export class HomeComponent {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.animateElements();
+  }
+
+  animateElements(): void {
+    const elements = document.querySelectorAll('.animate-item');
+    elements.forEach((el, index) => {
+      (el as HTMLElement).style.animationDelay = `${index * 0.2}s`;
+    });
+  }
 
   onSubmit(): void {
     if (this.subscribeForm.valid) {
       console.log('Form submitted with email:', this.subscribeForm.value.email);
-
-      // Show the popup
       this.showPopup = true;
-
-      // Reset the form
       this.subscribeForm.reset();
-
-      // Automatically close the popup after 3 seconds
       setTimeout(() => {
         this.closePopup();
       }, 3000);
