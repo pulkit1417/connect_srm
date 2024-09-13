@@ -12,7 +12,8 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   subscribeForm: FormGroup;
-  showPopup: boolean = false;
+  showNotification: boolean = false;
+  notificationMessage: string = '';
 
   constructor(private formBuilder: FormBuilder) {
     this.subscribeForm = this.formBuilder.group({
@@ -33,16 +34,14 @@ export class HomeComponent implements OnInit {
 
   onSubmit(): void {
     if (this.subscribeForm.valid) {
-      console.log('Form submitted with email:', this.subscribeForm.value.email);
-      this.showPopup = true;
+      const email = this.subscribeForm.value.email;
+      console.log('Form submitted with email:', email);
+      this.notificationMessage = `Successfully subscribed: ${email}`;
+      this.showNotification = true;
       this.subscribeForm.reset();
       setTimeout(() => {
-        this.closePopup();
+        this.showNotification = false;
       }, 3000);
     }
-  }
-
-  closePopup(): void {
-    this.showPopup = false;
   }
 }
