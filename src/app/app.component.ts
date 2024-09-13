@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'connect_srm';
-}
+    isMenuOpen = false;
+  
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    }
+  }

@@ -38,3 +38,28 @@ button:disabled {
 input, textarea, button {
   transition: all 0.3s ease;
 }
+
+.notification-container {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  transition: top 0.5s ease-in-out;
+  z-index: 1000;
+}
+
+.notification-container.show {
+  top: 20px;
+}
+
+.notification {
+  max-width: 90%;
+  width: auto;
+}
+
+/* New styles for error notification */
+.notification.error {
+  background-color: #f44336 !important; /* Red color for error */
+}

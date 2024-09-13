@@ -1,10 +1,27 @@
-<!-- contact.component.html -->
-<section id="contact" class="text-text body-font bg-background py-12">
+<section id="contact" class="text-text body-font bg-background py-12 relative">
+  <!-- Notification slider -->
+  <div [ngClass]="{
+    'notification': true,
+    'show': showNotification,
+    'success': notificationType === 'success',
+    'error': notificationType === 'error'
+  }">
+    <div class="notification-container" [class.show]="showNotification">
+      <div class="notification px-4 py-2 rounded-md shadow-md text-white"
+           [ngClass]="{
+             'bg-green-500': notificationType === 'success',
+             'error': notificationType === 'error'
+           }">
+        {{ notificationMessage }}
+      </div>
+    </div>
+  </div>
+
   <div class="container mx-auto flex flex-col items-center">
     <h2 class="text-3xl font-bold mb-4 text-text animate-fade-in">Contact Us</h2>
     <p class="mb-8 leading-relaxed text-lg text-center text-muted animate-fade-in" style="animation-delay: 0.2s;">We'd love to hear from you. Please fill out the form below.</p>
     
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-full max-w-lg bg-surface shadow-md rounded-lg p-8 animate-slide-up">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-full max-w-lg bg-white shadow-md rounded-lg p-8 animate-slide-up">
       <div class="mb-4 animate-fade-in" style="animation-delay: 0.4s;">
         <label class="block text-lg font-semibold text-primary mb-2" for="name">Name</label>
         <input type="text" id="name" formControlName="name" placeholder="Your Name" class="w-full bg-background rounded-full border border-muted focus:ring-2 focus:ring-accent focus:border-accent text-text py-3 px-4 leading-8 outline-none transition-all duration-200 ease-in-out">
@@ -31,4 +48,3 @@
     </form>
   </div>
 </section>
-
