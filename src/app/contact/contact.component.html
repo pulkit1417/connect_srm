@@ -41,8 +41,11 @@
       </div>
       
       <div class="flex justify-center animate-fade-in" style="animation-delay: 1s;">
-        <button type="submit" [disabled]="contactForm.invalid" class="bg-primary text-white py-3 px-6 rounded-full hover:bg-secondary transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
-          Send Message
+        <button type="submit" [disabled]="contactForm.invalid || isLoading" class="bg-primary text-white py-3 px-6 rounded-full hover:bg-secondary transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 relative">
+          <span [ngClass]="{'opacity-0': isLoading}">Send Message</span>
+          <div *ngIf="isLoading" class="absolute inset-0 flex items-center justify-center">
+            <div class="loader"></div>
+          </div>
         </button>
       </div>
     </form>

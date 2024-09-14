@@ -16,7 +16,7 @@ export class ContactComponent implements OnInit {
   showNotification = false;
   notificationMessage = '';
   notificationType: 'success' | 'error' = 'success';
-
+  isLoading = false; // New property for loader
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
@@ -40,6 +40,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
+      this.isLoading = true; // Start loading
       const params = {
         name: this.contactForm.get('name')?.value,
         email: this.contactForm.get('email')?.value,
@@ -50,25 +51,28 @@ export class ContactComponent implements OnInit {
       const templateID = "template_lkf3fsg";
 
       emailjs.send(serviceID, templateID, params)
-      .then((res) => {
-        console.log(res);
-        this.showNotification = true;
-        this.notificationMessage = "Your message sent successfully!!";
-        this.notificationType = 'success';
-        this.contactForm.reset();
-        setTimeout(() => this.showNotification = false, 5000);
-      })
-      .catch((err) => {
-        console.error('Error sending email:', err);
-        this.showNotification = true;
-        this.notificationType = 'error';
-        if (err.status === 412) {
-          this.notificationMessage = "There was an issue with the email service. Please try again later or contact support.";
-        } else {
-          this.notificationMessage = "An error occurred while sending your message. Please try again.";
-        }
-        setTimeout(() => this.showNotification = false, 5000);
-      });
+        .then((res) => {
+          console.log(res);
+          this.showNotification = true;
+          this.notificationMessage = "Your message sent successfully!!";
+          this.notificationType = 'success';
+          this.contactForm.reset();
+          setTimeout(() => this.showNotification = false, 5000);
+        })
+        .catch((err) => {
+          console.error('Error sending email:', err);
+          this.showNotification = true;
+          this.notificationType = 'error';
+          if (err.status === 412) {
+            this.notificationMessage = "There was an issue with the email service. Please try again later or contact support.";
+          } else {
+            this.notificationMessage = "An error occurred while sending your message. Please try again.";
+          }
+          setTimeout(() => this.showNotification = false, 5000);
+        })
+        .finally(() => {
+          this.isLoading = false; // Stop loading
+        });
     }
   }
 }
