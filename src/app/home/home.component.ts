@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   subscribeForm: FormGroup;
   showNotification: boolean = false;
   notificationMessage: string = '';
+  showPopup: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.subscribeForm = this.formBuilder.group({
@@ -35,7 +36,6 @@ export class HomeComponent implements OnInit {
   onSubmit(): void {
     if (this.subscribeForm.valid) {
       const email = this.subscribeForm.value.email;
-      console.log('Form submitted with email:', email);
       this.notificationMessage = `Successfully subscribed: ${email}`;
       this.showNotification = true;
       this.subscribeForm.reset();
@@ -43,5 +43,13 @@ export class HomeComponent implements OnInit {
         this.showNotification = false;
       }, 3000);
     }
+  }
+
+  showComingSoonPopup(): void {
+    this.showPopup = true;
+  }
+
+  closePopup(): void {
+    this.showPopup = false;
   }
 }

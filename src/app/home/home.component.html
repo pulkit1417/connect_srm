@@ -18,7 +18,7 @@
       </form>
       <p class="text-sm text-gray-500 mb-4 w-full">Stay updated with our latest features and releases.</p>
       <div class="flex lg:flex-row md:flex-col">
-        <button class="bg-gradient-to-r from-primary to-accent text-white inline-flex py-2 px-4 rounded-lg items-center hover:from-accent hover:to-primary focus:outline-none transition-all duration-200 shadow-md hover:shadow-lg">
+        <button (click)="showComingSoonPopup()" class="bg-gradient-to-r from-primary to-accent text-white inline-flex py-2 px-4 rounded-lg items-center hover:from-accent hover:to-primary focus:outline-none transition-all duration-200 shadow-md hover:shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 512 512">
             <path d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z"></path>
           </svg>
@@ -39,5 +39,16 @@
 <div class="notification-container" [class.show]="showNotification">
   <div class="notification bg-green-500 text-white px-4 py-2 rounded-md shadow-md">
     {{ notificationMessage }}
+  </div>
+</div>
+
+<!-- Coming Soon Popup -->
+<div *ngIf="showPopup" class="popup-overlay">
+  <div class="popup-content">
+    <button (click)="closePopup()" class="popup-close">
+      <i class="fa-solid fa-xmark text-2xl"></i>
+    </button>
+    <h2 class="text-2xl font-bold mb-4">Coming Soon!</h2>
+    <p>Our app will be available on Google Play soon. Stay tuned for updates!</p>
   </div>
 </div>

@@ -52,7 +52,6 @@ export class ContactComponent implements OnInit {
 
       emailjs.send(serviceID, templateID, params)
         .then((res) => {
-          console.log(res);
           this.showNotification = true;
           this.notificationMessage = "Your message sent successfully!!";
           this.notificationType = 'success';
