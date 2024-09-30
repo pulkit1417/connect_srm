@@ -6,9 +6,9 @@
     z-index: 50;
     width: 100%;
     max-width: 24rem; /* Equivalent to max-w-sm */
-}
-
-.notification {
+  }
+  
+  .notification {
     background-color: #24d26d; /* Green-500 */
     color: white;
     padding: 0.5rem 1rem;
@@ -17,18 +17,36 @@
     opacity: 0;
     transform: translateY(-100%);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.notification.show {
+  }
+  
+  .notification.show {
     opacity: 1;
     transform: translateY(0);
-}
-
-.hover-card {
+  }
+  
+  .hover-card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.hover-card:hover {
+  }
+  
+  .hover-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
+  }
+  
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 1s ease-out;
+  }
+  
+  .animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .lg\:w-1\/2 img {
+      height: 300px;
+      object-fit: cover;
+    }
+  } 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { NgForm, FormsModule } from '@angular/forms';
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent implements OnInit {
+export class EventsComponent implements OnInit, AfterViewInit {
   email: string = '';
   showNotification: boolean = false;
 
@@ -17,6 +17,24 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     // The notification will not show up on page load
+  }
+
+  ngAfterViewInit(): void {
+    this.animateOnScroll();
+  }
+
+  animateOnScroll(): void {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elements = this.el.nativeElement.querySelectorAll('.animate-on-scroll');
+    elements.forEach((el: Element) => observer.observe(el));
   }
 
   onSubmit(form: NgForm): void {
