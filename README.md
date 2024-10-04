@@ -31,5 +31,5 @@ The **Connect SRM** website serves as the promotional and informational gateway 
 
 The website is developed using the following technologies:
 
-- Angular 17,
+- Angular 18,
 - Tailwind CSS
